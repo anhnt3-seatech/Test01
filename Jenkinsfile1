@@ -25,9 +25,11 @@ pipeline {
         stage('Copy WAR to WAS server') {
             steps {
                 // Gửi WAR file sang WebSphere server (RHEL)
-                bat '''
-                    scp target/TestApp-0.0.1-SNAPSHOT.war root@192.168.59.227:/opt/apps/TestApp.war
-                '''
+                //bat '''
+                //    scp target/TestApp-0.0.1-SNAPSHOT.war root@192.168.59.227:/opt/apps/TestApp.war
+                    
+                //'''
+                bat 'E:\\Program Files\\Git\\bin\\bash.exe -c "scp target/TestApp-0.0.1-SNAPSHOT.war root@192.168.59.227:/opt/apps/TestApp.war"'
             }
         }
 
