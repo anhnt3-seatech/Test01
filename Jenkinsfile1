@@ -25,7 +25,7 @@ pipeline {
         stage('Copy WAR to WAS server') {
             steps {
                 // Gửi WAR file sang WebSphere server (RHEL)
-                sh '''
+                bat '''
                     scp target/TestApp-0.0.1-SNAPSHOT.war root@192.168.59.227:/opt/apps/TestApp.war
                 '''
             }
@@ -34,7 +34,7 @@ pipeline {
         stage('Deploy to WebSphere') {
             steps {
                 // SSH vào WebSphere server và gọi wsadmin
-                sh '''
+                bat '''
                     ssh root@192.168.59.227 '/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -user ecminstall -password Abc@123 -f /opt/scripts/deployApp.py'
                 '''
             }
