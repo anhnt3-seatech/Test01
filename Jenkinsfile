@@ -13,9 +13,15 @@ pipeline {
             }
         }
         stage('Pre-clean workaround') {
-            steps {
-            	echo 'Build and Deploy Successful!'
-                bat 'del /F /Q target\\TestApp-0.0.1-SNAPSHOT.war'
+            steps {               
+                bat """
+               	IF EXIST "target\\TestApp-0.0.1-SNAPSHOT.war" (
+                    bat 'del /F /Q target\\TestApp-0.0.1-SNAPSHOT.war'
+                ) ELSE (
+                    echo WAR file not found. Deployment failed.
+                    exit 1
+                )
+                """
             }
         }
         stage('Build') {
