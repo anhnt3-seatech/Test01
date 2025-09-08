@@ -27,6 +27,7 @@ pipeline {
                     echo WAR file not found. Deployment failed.
                     exit 1
                 )
+                """
             }
         }
         stage('Deploy') {
