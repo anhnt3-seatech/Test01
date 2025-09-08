@@ -29,7 +29,7 @@ pipeline {
                 //    scp target/TestApp-0.0.1-SNAPSHOT.war root@192.168.59.227:/opt/apps/TestApp.war
                     
                 //'''
-                bat '"C:\\Program Files\\Git\\bin\\bash.exe" -c "scp -v target/TestApp-0.0.1-SNAPSHOT.war root@192.168.59.227:/opt/apps/TestApp.war"'
+                bat '"E:\\Program Files\\Git\\bin\\bash.exe" -c "scp -v target/TestApp-0.0.1-SNAPSHOT.war root@192.168.59.227:/opt/apps/TestApp.war"'
             }
         }
 
