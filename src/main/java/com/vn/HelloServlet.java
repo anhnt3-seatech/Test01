@@ -10,5 +10,6 @@ public class HelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException {
         resp.getWriter().write("Test for javax.servlet!!!xxxabcxxxxxxxx");
+        resp.getWriter().write(new Calculator().cal(2, 3));
     }
 }
