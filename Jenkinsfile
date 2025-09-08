@@ -9,17 +9,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/anhnt3-seatech/MyWebApp.git'
+                git 'https://github.com/anhnt3-seatech/Test01.git'
             }
         }
         stage('Pre-clean workaround') {
             steps {
-                bat 'del /F /Q MyWebApp\\target\\MyWebApp-1.0-SNAPSHOT.war'
+                bat 'del /F /Q TestApp\\target\\TestApp-1.0-SNAPSHOT.war'
             }
         }
         stage('Build') {
             steps {
-               dir('MyWebApp') {
+               dir('TestApp') {
                     bat 'mvn clean install'
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat """
-                    copy /Y MyWebApp\\target\\MyWebApp-1.0-SNAPSHOT.war "%TOMCAT_WEBAPPS%\\MyWebApp-1.0-SNAPSHOT.war"
+                    copy /Y TestApp\\target\\MyWebApp-1.0-SNAPSHOT.war "%TOMCAT_WEBAPPS%\\TestApp-1.0-SNAPSHOT.war"
                 """
             }
         }
