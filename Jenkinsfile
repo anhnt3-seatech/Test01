@@ -16,7 +16,8 @@ pipeline {
             steps {               
                 bat """
                	IF EXIST "target\\TestApp-0.0.1-SNAPSHOT.war" (
-                    bat 'del /F /Q target\\TestApp-0.0.1-SNAPSHOT.war'
+               		echo WAR file not found. Deployment failed.
+                    //bat 'del /F /Q target\\TestApp-0.0.1-SNAPSHOT.war'
                 ) ELSE (
                     echo WAR file not found. Deployment failed.
                     exit 1
