@@ -40,9 +40,10 @@ pipeline {
         stage('Deploy to WebSphere') {
             steps {
                 // SSH vào WebSphere server và gọi wsadmin
-                bat '''
-                    ssh root@192.168.59.227 '/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -user ecminstall -password Abc@123 -f /opt/scripts/deployApp.py'
-                '''
+                //bat '''
+                //    ssh root@192.168.59.227 '/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -user ecminstall -password Abc@123 -f /opt/scripts/deployApp.py'
+                //'''
+                bat '"e:\\Program Files\\Git\\bin\\bash.exe" "ssh root@192.168.59.227 '/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -user ecminstall -password Abc@123 -f /opt/scripts/deployApp.py'"
             }
         }
     }
