@@ -20,13 +20,22 @@ pipeline {
         }
         stage('Build') {
             steps {
-               bat 'mvn clean install'
+            	dir('TestApp') {
+               		bat 'mvn clean install'
+               	}
             }
         }
         stage('Deploy') {
             steps {
                 bat """
-                    copy /Y target\\TestApp-1.0-SNAPSHOT.war "%TOMCAT_WEBAPPS%\\TestApp-1.0-SNAPSHOT.war"
+                	IF EXIST "target\\TestApp-1.0-SNAPSHOT.war" (
+                        copy /Y "target\\TestApp-1.0-SNAPSHOT.war" "E:\\Setup\\devtools\\apache-tomcat-8.0.53\\webapps\\TestApp.war"
+                    ) ELSE (
+                        echo WAR file not found. Deployment failed.
+                        exit 1
+                    )
+                    
+                    copy /Y target\\TestApp-1.0-SNAPSHOT.war "%TOMCAT_WEBAPPS%\\TestApp.war"
                 """
             }
         }
