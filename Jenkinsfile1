@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+	tools {
+        maven 'Maven3'  // Tên đúng với cấu hình ở trên
+    }
+    stages {
+    
+    	stage('Checkout') {
+            steps {
+                git 'https://github.com/anhnt3-seatech/Test01.git'
+            }
+        }
+        stage('Pre-clean workaround') {
+            steps {
+            	echo 'Build and Deploy Successful!'
+                bat 'del /F /Q target\\TestApp-0.0.1-SNAPSHOT.war'
+            }
+        }
+        stage('Build WAR') {
+            steps {
+                bat 'mvn clean package' // hoặc 'sh' nếu Jenkins chạy trên Linux
+            }
+        }
+
+        stage('Copy WAR to WAS server') {
+            steps {
+                // Gửi WAR file sang WebSphere server (RHEL)
+                sh '''
+                    scp target/TestApp.war ecminstall@192.168.59.227:/opt/apps/TestApp.war
+                '''
+            }
+        }
+
+        stage('Deploy to WebSphere') {
+            steps {
+                // SSH vào WebSphere server và gọi wsadmin
+                sh '''
+                    ssh ecminstall@192.168.59.227 '/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -user ecminstall -password Abc@123 -f /opt/scripts/deployApp.py'
+                '''
+            }
+        }
+    }
+}
