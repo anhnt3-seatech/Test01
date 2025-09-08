@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%
-    HttpSession session = request.getSession(false);
-    String user = (session != null) ? (String) session.getAttribute("user") : null;
+    
+	HttpSession sess = request.getSession(false);
+    String user = (sess != null) ? (String) sess.getAttribute("user") : null;
     if (user == null) {
         response.sendRedirect("login.jsp");
         return;
