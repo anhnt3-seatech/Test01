@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat """
-                    copy /Y target\\TestApp-1.0-SNAPSHOT.war "%TOMCAT_WEBAPPS%\\TestApp-1.0-SNAPSHOT.war"
+                    copy /Y \\target\\TestApp-1.0-SNAPSHOT.war "%TOMCAT_WEBAPPS%\\TestApp-1.0-SNAPSHOT.war"
                 """
             }
         }
