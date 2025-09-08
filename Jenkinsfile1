@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Build WAR') {
             steps {
-                bat 'mvn clean package' // hoặc 'sh' nếu Jenkins chạy trên Linux
+                bat 'mvn clean install' // hoặc 'sh' nếu Jenkins chạy trên Linux
             }
         }
 
