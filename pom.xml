@@ -5,4 +5,23 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>TestApp</name>
+  <dependencies>
+    <!-- Servlet API for Tomcat 8 -->
+    <dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>javax.servlet-api</artifactId>
+	        <version>3.1.0</version>
+	        <scope>provided</scope>
+	    </dependency>
+	</dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin để build WAR -->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
