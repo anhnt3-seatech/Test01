@@ -15,7 +15,7 @@ pipeline {
         stage('Pre-clean workaround') {
             steps {
             	echo 'Build and Deploy Successful!'
-                //bat 'del /F /Q target\\TestApp-1.0-SNAPSHOT.war'
+                //bat 'del /F /Q target\\TestApp-0.0.1-SNAPSHOT.war'
             }
         }
         stage('Build') {
@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat """
-                    copy /Y target\\MyWebApp-1.0-SNAPSHOT.war "%TOMCAT_WEBAPPS%\\TestApp-1.0-SNAPSHOT.war"
+                    copy /Y target\\TestApp-0.0.1-SNAPSHOT.war "%TOMCAT_WEBAPPS%\\TestApp.war"
                 """
             }
         }
