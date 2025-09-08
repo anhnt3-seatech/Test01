@@ -14,6 +14,7 @@ pipeline {
         }
         stage('Pre-clean workaround') {
             steps {
+            	echo 'Build and Deploy Successful!'
                 //bat 'del /F /Q target\\TestApp-1.0-SNAPSHOT.war'
             }
         }
