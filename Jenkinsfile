@@ -20,9 +20,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-            	dir('TestApp') {
-               		bat 'mvn clean install'
-               	}
+               	bat """
+               	IF EXIST "target\\TestApp-1.0-SNAPSHOT.war" (
+                    bat 'mvn clean install'
+                ) ELSE (
+                    echo WAR file not found. Deployment failed.
+                    exit 1
+                )
             }
         }
         stage('Deploy') {
