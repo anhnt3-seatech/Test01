@@ -43,7 +43,7 @@ pipeline {
                 //bat '''
                 //    ssh root@192.168.59.227 '/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -user ecminstall -password Abc@123 -f /opt/scripts/deployApp.py'
                 //'''
-                bat '"E:\\Program Files\\Git\\bin\\bash.exe" -c "ssh root@192.168.59.227 \'/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -user ecminstall -password Abc@123 -f /opt/scripts/deployApp.py\'"'
+                bat '"E:\\Program Files\\Git\\bin\\bash.exe" -c "ssh -o StrictHostKeyChecking=no -i C:/Users/Anhnt3/.ssh/id_rsa root@192.168.59.227 \'/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -user ecminstall -password Abc@123 -f /opt/scripts/deployApp.py\'"'
             }
         }
     }
