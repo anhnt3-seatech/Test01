@@ -15,13 +15,13 @@ pipeline {
         stage('Pre-clean workaround') {
             steps {
             	echo 'Build and Deploy Successful!'
-                bat 'del /F /Q target\\TestApp-1.0-SNAPSHOT.war'
+                bat 'del /F /Q target\\TestApp-0.0.1-SNAPSHOT.war'
             }
         }
         stage('Build') {
             steps {
                	bat """
-               	IF EXIST "target\\TestApp-1.0-SNAPSHOT.war" (
+               	IF EXIST "target\\TestApp-0.0.1-SNAPSHOT.war" (
                     bat 'mvn clean install'
                 ) ELSE (
                     echo WAR file not found. Deployment failed.
@@ -33,8 +33,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat """
-                	IF EXIST "target\\TestApp-1.0-SNAPSHOT.war" (
-                        copy /Y "target\\TestApp-1.0-SNAPSHOT.war" "E:\\Setup\\devtools\\apache-tomcat-8.0.53\\webapps\\TestApp.war"
+                	IF EXIST "target\\TestApp-0.0.1-SNAPSHOT.war" (
+                        copy /Y "target\\TestApp-0.0.1-SNAPSHOT.war" "E:\\Setup\\devtools\\apache-tomcat-8.0.53\\webapps\\TestApp.war"
                     ) ELSE (
                         echo WAR file not found. Deployment failed.
                         exit 1
