@@ -21,7 +21,11 @@ pipeline {
                 bat 'mvn clean install' // hoặc 'sh' nếu Jenkins chạy trên Linux
             }
         }
-
+		stage('Add host to known_hosts') {
+		    steps {
+		        bat '"E:\\Program Files\\Git\\bin\\bash.exe" -c "mkdir -p ~/.ssh && ssh-keyscan -H 192.168.59.227 >> ~/.ssh/known_hosts"'
+		    }
+		}
         stage('Copy WAR to WAS server') {
             steps {
                 // Gửi WAR file sang WebSphere server (RHEL)
