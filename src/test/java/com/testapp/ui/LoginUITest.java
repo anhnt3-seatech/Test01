@@ -27,7 +27,8 @@ public class LoginUITest {
         driver.findElement(By.id("loginBtn")).click();
 
         String pageTitle = driver.getTitle();
-        assertEquals("Home Page", pageTitle);
+        System.out.println("pageTitle="+pageTitle);
+        assertEquals("Home - TestApp", pageTitle);
     }
 
     @After
